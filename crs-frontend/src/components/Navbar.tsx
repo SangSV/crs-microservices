@@ -18,8 +18,11 @@ export default function Navbar() {
       {isAuthenticated && user?.role === 'ADMIN' && (
         <Link to="/admin/courses">Quan tri mon hoc</Link>
       )}
-      {isAuthenticated && user?.role === 'STUDENT' && (
-        <Link to="/register-course">Dang ky hoc phan</Link>
+      {isAuthenticated && user?.role === 'STUDENT' && ( 
+        <> 
+          <Link to="/register-course">Dang ky hoc phan</Link> 
+          <Link to="/my-registrations">Mon hoc da dang ky</Link> 
+        </> 
       )}
       <div style={{ marginLeft: 'auto' }}>
         {isAuthenticated ? (
