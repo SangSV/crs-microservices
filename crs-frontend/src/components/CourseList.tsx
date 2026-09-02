@@ -9,9 +9,18 @@ interface CourseListProps {
   state: LoadState; 
   errorMessage: string; 
   onRetry: () => void; 
+  onEdit: (course: Course) => void;
+  onDelete: (course: Course) => void;
 } 
 
-export default function CourseList({ courses, state, errorMessage, onRetry }: CourseListProps) { 
+export default function CourseList({ 
+  courses, 
+  state, 
+  errorMessage, 
+  onRetry,
+  onEdit,
+  onDelete,
+}: CourseListProps) { 
   if (state === 'loading') { 
     return <p>Dang tai danh sach mon hoc...</p>; 
   } 
@@ -33,8 +42,9 @@ export default function CourseList({ courses, state, errorMessage, onRetry }: Co
       <thead> 
         <tr style={{ textAlign: 'left', borderBottom: '2px solid #333' }}> 
           <th>Ten mon hoc</th> 
-          <th>So tin chi</th>
+          <th>So tin chi</th> 
           <th>So cho con lai</th> 
+          <th>Thao tac</th>
         </tr> 
       </thead> 
       <tbody> 
@@ -45,9 +55,16 @@ export default function CourseList({ courses, state, errorMessage, onRetry }: Co
             <td style={{ color: course.soChoConLai === 0 ? '#b91c1c' : 'inherit' }}> 
               {course.soChoConLai} / {course.soChoToiDa} 
             </td> 
+            <td>
+              <button onClick={() => onEdit(course)}>Sua</button>
+              <button onClick={() => onDelete(course)} style={{ marginLeft: 8, color: '#b91c1c' }}>
+                Xoa
+              </button>
+            </td>
           </tr> 
         ))} 
       </tbody> 
     </table> 
   ); 
 }
+
