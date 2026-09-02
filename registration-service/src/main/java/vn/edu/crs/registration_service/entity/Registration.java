@@ -20,4 +20,20 @@ public class Registration {
 
     @Column(name = "course_id", nullable = false)
     private Long courseId;
+
+    @Column(name = "trang_thai")
+    private String trangThai = "DA_DANG_KY";
+
+    @Column(name = "ngay_dang_ky")
+    private java.time.LocalDateTime ngayDangKy;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.trangThai == null) {
+            this.trangThai = "DA_DANG_KY";
+        }
+        if (this.ngayDangKy == null) {
+            this.ngayDangKy = java.time.LocalDateTime.now();
+        }
+    }
 }

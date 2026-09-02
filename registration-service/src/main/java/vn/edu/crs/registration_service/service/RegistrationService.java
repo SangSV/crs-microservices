@@ -43,4 +43,8 @@ public class RegistrationService {
         // 2. Xóa bản ghi đăng ký trong DB
         registrationRepository.delete(registration);
     }
+
+    public java.util.List<Registration> getMyRegistrations(Long studentId) {
+        return registrationRepository.findByStudentId(studentId);
+    }
 }
